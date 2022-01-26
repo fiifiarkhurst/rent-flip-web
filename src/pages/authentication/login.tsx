@@ -62,28 +62,7 @@ function Login() {
                           type="password"
                           required={true}
                           placeholder="Your Password"
-                          className="
-                          block
-                          w-full
-                          px-5
-                          py-3
-                          text-base
-                          placeholder-gray-300
-                          transition
-                          duration-500
-                          ease-in-out
-                          transform
-                          border border-transparent
-                          rounded-lg
-                          text-gray-600
-                          bg-gray-50
-                          focus:outline-none
-                          focus:border-transparent
-                          focus:ring-2
-                          focus:ring-white
-                          focus:ring-offset-2
-                          focus:ring-offset-gray-300
-                        "
+                          className="focus:ring-offset-gray-300 focus:ring-offset-2 focus:ring-2 focus:border-transparent focus:outline-none bg-gray-50 text-gray-600 rounded-lg border border-transparent transform  ease-in-out duration-500 block w-full px-5 py-3 text-base placeholder-gray-300  transition"
                         />
                       </div>
                     </div>
@@ -121,28 +100,7 @@ function Login() {
                     <div>
                       <button
                         type="submit"
-                        className="
-                        flex
-                        items-center
-                        justify-center
-                        w-full
-                        px-10
-                        py-4
-                        text-base
-                        font-medium
-                        text-center text-white
-                        transition
-                        duration-500
-                        ease-in-out
-                        transform
-                        bg-green-600
-                        rounded-xl
-                        hover:bg-green-500
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-offset-2
-                        focus:ring-green-500
-                      "
+                        className="flex items-center py-4 justify-center  w-full px-10 text-base  focus:ring-green-500 focus:ring-offset-2 focus:ring-2 rounded-xl focus:outline-none hover:bg-green-500 bg-green-600 transform ease-in-out   duration-500  text-center text-white   transition   font-medium"
                       >
                         {" "}
                         Sign in{" "}

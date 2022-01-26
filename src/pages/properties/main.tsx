@@ -5,19 +5,7 @@ function MainComponent() {
   return (
     <>
       <section>
-        <div
-          className="
-          relative
-          items-center
-          w-full
-          px-5
-          py-12
-          mx-auto
-          md:px-12
-          lg:px-16
-          max-w-7xl
-        "
-        >
+        <div className="relative  items-center  w-full px-5 py-12  mx-auto   md:px-12  lg:px-16  max-w-7xl">
           <div className="pb-5 border-b border-black flex flex-row items-center justify-between">
             <h3 className="text-lg font-medium leading-6 text-neutral-600">
               {" "}
