@@ -3,14 +3,26 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { DASHBOARD } from "../../navigation/constants";
+import { SecondaryLoader } from "../../shared/loader";
 
 function Login() {
   const { push } = useHistory();
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  // simulate loader
+  function simulateLoader(timeout: number) {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+  }
 
   function onLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    push(DASHBOARD);
+    setIsLoading(true);
+    simulateLoader(4000).then(() => {
+      setIsLoading(false);
+      push(DASHBOARD);
+    });
   }
+
   return (
     <>
       <section>
@@ -35,7 +47,7 @@ function Login() {
                 <div className="mt-6">
                   <form className="space-y-6" onSubmit={onLogin}>
                     <div>
-                      <label className="block text-sm font-medium text-gray-600">
+                      <label className="block text-xs font-medium text-gray-600">
                         {" "}
                         Email address{" "}
                       </label>
@@ -46,12 +58,12 @@ function Login() {
                           type="email"
                           required={true}
                           placeholder="Your Email"
-                          className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600 bg-gray-50 focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                          className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                         />
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <label className="block text-sm font-medium text-gray-600">
+                      <label className="block text-xs font-medium text-gray-600">
                         {" "}
                         Password{" "}
                       </label>
@@ -62,7 +74,7 @@ function Login() {
                           type="password"
                           required={true}
                           placeholder="Your Password"
-                          className="focus:ring-offset-gray-300 focus:ring-offset-2 focus:ring-2 focus:border-transparent focus:outline-none bg-gray-50 text-gray-600 rounded-lg border border-transparent transform  ease-in-out duration-500 block w-full px-5 py-3 text-base placeholder-gray-300  transition"
+                          className="block focus:ring-offset-gray-300  focus:ring-offset-2 focus:ring-white   focus:ring-2  w-full focus:border-transparent  focus:outline-none   text-gray-600  rounded-lg  border border-transparent transform ease-in-out  px-5  py-3 text-base placeholder-gray-300 transition    duration-500 "
                         />
                       </div>
                     </div>
@@ -73,14 +85,7 @@ function Login() {
                           name="remember-me"
                           type="checkbox"
                           placeholder="Your password"
-                          className="
-                          w-4
-                          h-4
-                          text-blue-600
-                          border-gray-200
-                          rounded
-                          focus:ring-blue-500
-                        "
+                          className="  w-4   h-4  text-green-600   border-gray-200 rounded   focus:ring-green-500"
                         />
                         <label className="block ml-2 text-sm text-gray-600">
                           {" "}
@@ -100,10 +105,19 @@ function Login() {
                     <div>
                       <button
                         type="submit"
-                        className="flex items-center py-4 justify-center  w-full px-10 text-base  focus:ring-green-500 focus:ring-offset-2 focus:ring-2 rounded-xl focus:outline-none hover:bg-green-500 bg-green-600 transform ease-in-out   duration-500  text-center text-white   transition   font-medium"
+                        className="flex ease-in-out focus:ring-green-500 focus:ring-offset-0 focus:ring-0 focus:outline-none hover:bg-green-500 rounded-xl bg-green-600 transform duration-500 items-center  justify-center transition text-center text-white   font-medium   text-base   py-4   w-full     px-10"
                       >
-                        {" "}
-                        Sign in{" "}
+                        {isLoading ? (
+                          <>
+                            <SecondaryLoader
+                              size="w-6 h-6"
+                              color="border-white"
+                              border="border-2 "
+                            />
+                          </>
+                        ) : (
+                          <>Sign in </>
+                        )}{" "}
                       </button>
                     </div>
                   </form>

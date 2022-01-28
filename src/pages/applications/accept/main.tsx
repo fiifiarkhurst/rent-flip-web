@@ -1,7 +1,34 @@
+import React from "react";
 import { BasicModal } from "../../../components/modal";
 import { AcceptComponentProp } from "./types";
+import { useAcceptApplication } from "../broker";
+import { AxiosError } from "axios";
+import { SecondaryLoader } from "../../../shared/loader";
+import { classNames } from "../../../components/className";
+import toast from "react-hot-toast";
 
-function MainComponent({ setShow, show }: AcceptComponentProp) {
+function MainComponent({
+  setShow,
+  show,
+  application,
+  refetch,
+}: AcceptComponentProp) {
+  const { mutateAsync, isLoading } = useAcceptApplication(
+    application?._id as string
+  );
+
+  function onAccept(e: React.FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    mutateAsync()
+      .then(() => {
+        refetch();
+        toast.success("Application accepted successfully");
+        setShow(false);
+      })
+      .catch((e: AxiosError) => {
+        toast.error(e.response?.data?.message || e?.message);
+      });
+  }
   return (
     <>
       <BasicModal show={show} setShow={setShow} size={24}>
@@ -23,13 +50,28 @@ function MainComponent({ setShow, show }: AcceptComponentProp) {
           <div className="mt-5 sm:mt-6 space-y-2">
             <button
               type="button"
-              className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm"
+              onClick={onAccept}
+              disabled={isLoading}
+              className={classNames(
+                isLoading ? "opacity-70 cursor-wait" : "hover:bg-green-500 ",
+                "flex items-center justify-center w-full h-10 rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white  focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm"
+              )}
             >
-              Yes, accept.
+              {isLoading ? (
+                <>
+                  <SecondaryLoader
+                    size="w-5 h-5"
+                    color="border-white"
+                    border="border-2 "
+                  />
+                </>
+              ) : (
+                <>Yes, accept.</>
+              )}
             </button>
             <button
               type="button"
-              className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-500  focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm"
+              className="flex items-center h-10 justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-500  focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm"
             >
               Cancel
             </button>

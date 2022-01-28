@@ -87,9 +87,9 @@ export default function SideNav({
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
-                        to={item.href}
+                        to={item.href[0]}
                         className={classNames(
-                          item.href === pathname
+                          item.href.includes(pathname)
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
@@ -97,7 +97,7 @@ export default function SideNav({
                       >
                         <item.icon
                           className={classNames(
-                            item.href === pathname
+                            item.href.includes(pathname)
                               ? "text-gray-500"
                               : "text-gray-400 group-hover:text-gray-500",
                             "mr-4 flex-shrink-0 h-6 w-6"
@@ -145,7 +145,7 @@ export default function SideNav({
             <div className="flex-1 flex flex-col pt-6 pb-5 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-8">
                 <h2 className="text-3xl text-center text-white font-bold">
-                  RentFlip
+                  Rent Flip
                 </h2>
                 <sup className={"font-bold text-green-50"}>TM</sup>
                 {/* <img
@@ -158,9 +158,9 @@ export default function SideNav({
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
-                    to={item.href}
+                    to={item.href[0]}
                     className={classNames(
-                      item.href === pathname
+                      [item.href[0].charAt(1)].includes(pathname.charAt(1))
                         ? "bg-green-700 text-gray-100"
                         : "text-gray-300 ",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
@@ -168,7 +168,7 @@ export default function SideNav({
                   >
                     <item.icon
                       className={classNames(
-                        item.href === pathname
+                        [item.href[0].charAt(1)].includes(pathname.charAt(1))
                           ? "text-gray-100"
                           : "text-gray-300",
                         "mr-3 flex-shrink-0 h-5 w-5"

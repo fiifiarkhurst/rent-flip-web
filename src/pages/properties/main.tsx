@@ -1,4 +1,6 @@
 import { PlusSmIcon } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
+import { ADD_PROPERTY } from "../../navigation/constants";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 function MainComponent() {
@@ -11,13 +13,13 @@ function MainComponent() {
               {" "}
               List of Properties{" "}
             </h3>
-            <button
-              type="button"
+            <Link
+              to={ADD_PROPERTY}
               className="inline-flex items-center px-4 py-2 border border-transparent shadow-none text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-0 focus:ring-offset-0"
             >
               <PlusSmIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
               Add Property
-            </button>
+            </Link>
           </div>
           <div className="relative mx-auto max-w-7xl">
             <div className="grid max-w-lg gap-12 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none">

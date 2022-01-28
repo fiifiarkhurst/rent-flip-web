@@ -1,9 +1,16 @@
 import React from "react";
 import { RouteProp } from "./types";
-import { DASHBOARD, PROPERTIES, APPLICATIONS, SETTINGS } from "./constants";
+import {
+  DASHBOARD,
+  PROPERTIES,
+  APPLICATIONS,
+  SETTINGS,
+  ADD_PROPERTY,
+} from "./constants";
 
 const DashboardPage = React.lazy(() => import("../pages/dashboard"));
 const PropertiesPage = React.lazy(() => import("../pages/properties"));
+const AddPropertyPage = React.lazy(() => import("../pages/properties-add"));
 const ApplicationPage = React.lazy(() => import("../pages/applications"));
 const SettingsPage = React.lazy(() => import("../pages/settings"));
 
@@ -18,6 +25,12 @@ const routes: RouteProp[] = [
     component: PropertiesPage,
     name: "Properties",
     path: PROPERTIES,
+    exact: true,
+  },
+  {
+    component: AddPropertyPage,
+    name: "Add Property",
+    path: ADD_PROPERTY,
     exact: true,
   },
   {

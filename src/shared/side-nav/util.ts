@@ -16,21 +16,21 @@ export const navigation: Array<NavigationProp> = [
   {
     name: "Dashboard",
     icon: ChartPieIcon,
-    href: DASHBOARD,
+    href: [DASHBOARD],
   },
   {
     name: "Properties",
     icon: OfficeBuildingIcon,
-    href: PROPERTIES,
+    href: [PROPERTIES],
   },
   {
     name: "Applications",
     icon: DocumentTextIcon,
-    href: APPLICATIONS,
+    href: [APPLICATIONS],
   },
   {
     name: "Settings",
     icon: CogIcon,
-    href: SETTINGS,
+    href: [SETTINGS],
   },
 ];

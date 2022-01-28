@@ -8,7 +8,7 @@ export interface RouteProp {
 }
 
 export interface NavigationProp {
-  href: string;
+  href: string[];
   icon?: any;
   name: string;
 }

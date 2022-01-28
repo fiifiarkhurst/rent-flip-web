@@ -1,24 +1,13 @@
 import React from "react";
+import { Application } from "../types";
 import { Card } from "./card";
 import { DateViewComponentProp } from "./types";
-
-const applications = [
-  {
-    name: "Domey Benjamin",
-    phone: "0200000000",
-    property: "",
-    idType: "NationalID",
-    email: "domey.benjamin@example.com",
-    startDate: new Date("2022-01-25T23:50:44.551Z"),
-    endDate: new Date("2022-01-25T23:50:44.551Z"),
-    photo:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-];
 
 export default function MainComponent({
   onAccept,
   onReject,
+
+  applications,
 }: DateViewComponentProp) {
   return (
     <div className="flex flex-col mt-8">
@@ -64,10 +53,10 @@ export default function MainComponent({
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {applications.map((application) => (
+                {applications.map((application: Application) => (
                   <React.Fragment key={application.name}>
                     <Card
-                      {...application}
+                      application={application}
                       onAccept={() => onAccept(application)}
                       onReject={() => onReject(application)}
                     />

@@ -3,16 +3,7 @@ import { XIcon } from "@heroicons/react/outline";
 import MalePng from "../../../assets/male.png";
 import moment from "moment";
 
-function Card({
-  name,
-  email,
-  phone,
-  startDate,
-  endDate,
-  idType,
-  onReject,
-  onAccept,
-}: CardComponentProp) {
+function Card({ application, onReject, onAccept }: CardComponentProp) {
   return (
     <>
       <tr>
@@ -22,28 +13,30 @@ function Card({
               <img
                 className="h-10 w-10 rounded-full"
                 src={MalePng}
-                alt={name}
+                alt={application?.name}
               />
             </div>
             <div className="ml-4">
-              <div className="text-sm font-medium text-gray-900">{name}</div>
-              <div className="text-sm text-gray-500">{email}</div>
+              <div className="text-sm font-medium text-gray-900">
+                {application?.name}
+              </div>
+              <div className="text-sm text-gray-500">{application?.email}</div>
             </div>
           </div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-500">{phone}</div>
+          <div className="text-sm text-gray-500">{application?.phone}</div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
           <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-            {idType}
+            {application?.idType}
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {moment(startDate).format("MMMM Do YYYY")}
+          {moment(application?.startDate).format("MMMM Do YYYY")}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {moment(endDate).format("MMMM Do YYYY")}
+          {moment(application?.endDate).format("MMMM Do YYYY")}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-xs font-medium">
           <div className="flex flex-row item-center justify-between">

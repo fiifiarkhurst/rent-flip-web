@@ -18,14 +18,15 @@ export function TopLoader() {
   );
 }
 
-export function SecondaryLoader({ size, color }: ISecondaryLoader) {
+export function SecondaryLoader({ size, color, border }: ISecondaryLoader) {
   return (
     <>
       <div
         className={classNames(
           size,
           color,
-          "w-16 h-16 border-4 border-dashed rounded-full animate-spin border-lime-600"
+          border,
+          " border-dashed rounded-full animate-spin "
         )}
       ></div>
     </>

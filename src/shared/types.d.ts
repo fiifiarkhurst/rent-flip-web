@@ -3,6 +3,7 @@ import React from "react";
 export interface ISecondaryLoader {
   size: string;
   color: string;
+  border: string;
 }
 
 export interface ILogoutComponentProp {

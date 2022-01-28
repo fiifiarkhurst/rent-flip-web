@@ -2,7 +2,7 @@ function MainComponent() {
   return (
     <>
       <section>
-        <div className="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl">
+        <div className="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-16 max-w-5xl">
           <div className="pb-5 border-b border-black flex flex-row items-center justify-between">
             <h3 className="text-lg font-medium leading-6 text-neutral-600">
               {" "}
@@ -29,7 +29,7 @@ function MainComponent() {
                   <div className="col-span-4 sm:col-span-2 space-y-2">
                     <label
                       htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-600"
+                      className="block text-xs font-medium text-gray-600"
                     >
                       First name
                     </label>
@@ -37,14 +37,14 @@ function MainComponent() {
                       type="text"
                       name="first-name"
                       id="first-name"
-                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600 bg-gray-50 focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                     />
                   </div>
 
                   <div className="col-span-4 sm:col-span-2 space-y-2">
                     <label
                       htmlFor="last-name"
-                      className="block text-sm font-medium text-gray-600"
+                      className="block text-xs font-medium text-gray-600"
                     >
                       Last name
                     </label>
@@ -52,14 +52,14 @@ function MainComponent() {
                       type="text"
                       name="last-name"
                       id="last-name"
-                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600 bg-gray-50 focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                     />
                   </div>
 
                   <div className="col-span-4 sm:col-span-2 space-y-2">
                     <label
                       htmlFor="email-address"
-                      className="block text-sm font-medium text-gray-600 space-y-2"
+                      className="block text-xs font-medium text-gray-600 space-y-2"
                     >
                       Email address
                     </label>
@@ -67,14 +67,14 @@ function MainComponent() {
                       type="text"
                       name="email-address"
                       id="email-address"
-                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600 bg-gray-50 focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                     />
                   </div>
 
                   <div className="col-span-4 sm:col-span-2 space-y-2">
                     <label
                       htmlFor="last-name"
-                      className="block text-sm font-medium text-gray-600 space-y-2"
+                      className="block text-xs font-medium text-gray-600 space-y-2"
                     >
                       Username
                     </label>
@@ -82,14 +82,14 @@ function MainComponent() {
                       type="text"
                       name="user-name"
                       id="user-name"
-                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600 bg-gray-50 focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                      className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                     />
                   </div>
 
                   <div className="col-span-4 sm:col-span-2 space-y-2">
                     <label
                       htmlFor="postal-code"
-                      className="block text-sm font-medium text-gray-600"
+                      className="block text-xs font-medium text-gray-600"
                     >
                       Password
                     </label>
@@ -97,7 +97,7 @@ function MainComponent() {
                       type="password"
                       name="password-code"
                       id="password-code"
-                      className="focus:ring-offset-gray-300 focus:ring-offset-2 focus:ring-2 focus:border-transparent focus:outline-none bg-gray-50 text-gray-600 rounded-lg border border-transparent transform  ease-in-out duration-500 block w-full px-5 py-3 text-base placeholder-gray-300  transition"
+                      className="focus:ring-offset-gray-300 focus:ring-offset-2 focus:ring-2 focus:border-transparent focus:outline-none  text-gray-600 rounded-lg border border-transparent transform  ease-in-out duration-500 block w-full px-5 py-3 text-base placeholder-gray-300  transition"
                     />
                   </div>
 
@@ -112,7 +112,7 @@ function MainComponent() {
                       type="password"
                       name="confirm-code"
                       id="confirm-code"
-                      className="focus:ring-offset-gray-300 focus:ring-offset-2 focus:ring-2 focus:border-transparent focus:outline-none bg-gray-50 text-gray-600 rounded-lg border border-transparent transform  ease-in-out duration-500 block w-full px-5 py-3 text-base placeholder-gray-300  transition"
+                      className="focus:ring-offset-gray-300 focus:ring-offset-2 focus:ring-2 focus:border-transparent focus:outline-none  text-gray-600 rounded-lg border border-transparent transform  ease-in-out duration-500 block w-full px-5 py-3 text-base placeholder-gray-300  transition"
                     />
                   </div>
                 </div>
