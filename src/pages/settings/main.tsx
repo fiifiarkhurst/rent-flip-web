@@ -1,4 +1,10 @@
+import React from "react";
+import { siteTitle } from "../../constants/appName";
+
 function MainComponent() {
+  React.useEffect(() => {
+    document.title = "Settings | " + siteTitle;
+  }, []);
   return (
     <>
       <section>

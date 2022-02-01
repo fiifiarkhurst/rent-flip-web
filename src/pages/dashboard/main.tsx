@@ -1,5 +1,7 @@
-import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
+import React from "react";
 import { classNames } from "../../components/className";
+import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
+import { siteTitle } from "../../constants/appName";
 
 const stats = [
   {
@@ -26,6 +28,9 @@ const stats = [
 ];
 
 function MainComponent() {
+  React.useEffect(() => {
+    document.title = "Dashboard | " + siteTitle;
+  }, []);
   return (
     <>
       <div className="relative  items-center  w-full px-5 py-12  mx-auto   md:px-12  lg:px-16  max-w-7xl">

@@ -8,6 +8,8 @@ import { get } from "../../services/transport";
 import { GET_APPLICATIONS } from "../../constants/constants";
 import { ErrorState, EmptyState } from "../../components/alert";
 import { useHistory } from "react-router-dom";
+import { siteTitle } from "../../constants/appName";
+
 const AcceptApplication = React.lazy(() => import("./accept"));
 const RejectApplication = React.lazy(() => import("./reject"));
 
@@ -24,6 +26,10 @@ function MainComponent() {
     any,
     AxiosResponse<GetApplicationsOutpuProp>
   >("applications", () => get(GET_APPLICATIONS));
+
+  React.useEffect(() => {
+    document.title = "Applications | " + siteTitle;
+  }, []);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import React from "react";
 import { PlusSmIcon } from "@heroicons/react/outline";
 import { AxiosResponse } from "axios";
 import { useQuery } from "react-query";
@@ -9,6 +10,7 @@ import { get } from "../../services/transport";
 import { SecondaryLoader } from "../../shared/loader";
 import { DataView } from "./data-view";
 import { GetPropertiesOutpuProp } from "./types";
+import { siteTitle } from "../../constants/appName";
 
 function MainComponent() {
   const { data, isLoading, refetch } = useQuery<
@@ -16,6 +18,10 @@ function MainComponent() {
     any,
     AxiosResponse<GetPropertiesOutpuProp>
   >("properties", () => get(GET_PROPERITES));
+
+  React.useEffect(() => {
+    document.title = "Properties | " + siteTitle;
+  }, []);
 
   return (
     <>

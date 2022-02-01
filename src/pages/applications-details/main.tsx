@@ -9,6 +9,7 @@ import { SecondaryLoader, TopLoader } from "../../shared/loader";
 import { ErrorState } from "../../components/alert";
 import { DetailsCard } from "./data-view";
 import { Application } from "../applications/types";
+import { siteTitle } from "../../constants/appName";
 
 const AcceptApplicationComponent = React.lazy(
   () => import("../applications/accept")
@@ -29,6 +30,10 @@ function MainComponent() {
     any,
     AxiosResponse<GetApplicationDetailsOutputProp>
   >(`${params.id}`, () => get(GET_SINGLE_APPLICATION(params.id)));
+
+  React.useEffect(() => {
+    document.title = "Application Details | " + siteTitle;
+  }, []);
 
   return (
     <>

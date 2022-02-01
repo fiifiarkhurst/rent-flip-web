@@ -16,6 +16,7 @@ import { AddPropertyFormInput } from "./types";
 import { useAddProperty } from "./broker";
 import { SecondaryLoader } from "../../shared/loader";
 import { classNames } from "../../components/className";
+import { siteTitle } from "../../constants/appName";
 import LocationSearchInput from "../../components/location/location";
 import toast from "react-hot-toast";
 
@@ -35,6 +36,10 @@ function MainComponent() {
   const { push } = useHistory();
 
   const { mutateAsync, isLoading } = useAddProperty();
+
+  React.useEffect(() => {
+    document.title = "Add Property | " + siteTitle;
+  }, []);
 
   const onSubmit: SubmitHandler<AddPropertyFormInput> = (data) => {
     mutateAsync({

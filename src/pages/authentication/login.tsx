@@ -2,12 +2,18 @@
 
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { siteTitle } from "../../constants/appName";
 import { DASHBOARD } from "../../navigation/constants";
 import { SecondaryLoader } from "../../shared/loader";
+import Logo from "../../assets/logo.png";
 
 function Login() {
   const { push } = useHistory();
   const [isLoading, setIsLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    document.title = "Login | " + siteTitle;
+  }, []);
 
   // simulate loader
   function simulateLoader(timeout: number) {
@@ -33,11 +39,7 @@ function Login() {
           >
             <div className="w-full max-w-xl mx-auto lg:w-96">
               <div>
-                <a href="/" className="text-green-600 font-bold text-lg">
-                  RentFlip
-                </a>
-                <sup className={"font-bold text-green-600 text-xs"}>TM</sup>
-
+                <img src={Logo} className="h-16 w-16" alt="" />
                 <h2 className="mt-6 text-3xl font-extrabold text-gray-600">
                   {" "}
                   Sign in to your account.{" "}
