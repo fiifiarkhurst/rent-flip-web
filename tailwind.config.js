@@ -10,6 +10,7 @@ module.exports = {
       white: colors.white,
       red: colors.red,
       purple: colors.purple,
+      yellow: colors.yellow,
     },
     fontFamily: {
       sans: ["Poppins", ...defaultTheme.fontFamily.sans],

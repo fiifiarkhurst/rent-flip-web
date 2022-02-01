@@ -1,3 +1,5 @@
+import { Property } from "../properties/types";
+
 export interface Application {
   _id: string;
   code: string;
@@ -5,7 +7,7 @@ export interface Application {
   email: string;
   phone: string;
   photo: string;
-  property: string;
+  property: Property;
   idType: string;
   idPhoto: string;
   paySlips: string[];
@@ -16,8 +18,9 @@ export interface Application {
 }
 
 declare enum ApplicationStatus {
-  Reject,
+  Rejected,
   Accepted,
+  Pending,
 }
 
 export type Status = keyof typeof ApplicationStatus;

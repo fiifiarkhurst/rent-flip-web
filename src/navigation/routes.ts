@@ -6,12 +6,16 @@ import {
   APPLICATIONS,
   SETTINGS,
   ADD_PROPERTY,
+  APPLICATION_DETAILS,
 } from "./constants";
 
 const DashboardPage = React.lazy(() => import("../pages/dashboard"));
 const PropertiesPage = React.lazy(() => import("../pages/properties"));
 const AddPropertyPage = React.lazy(() => import("../pages/properties-add"));
 const ApplicationPage = React.lazy(() => import("../pages/applications"));
+const ApplicationDetailsPage = React.lazy(
+  () => import("../pages/applications-details")
+);
 const SettingsPage = React.lazy(() => import("../pages/settings"));
 
 const routes: RouteProp[] = [
@@ -37,6 +41,12 @@ const routes: RouteProp[] = [
     component: ApplicationPage,
     name: "Applications",
     path: APPLICATIONS,
+    exact: true,
+  },
+  {
+    component: ApplicationDetailsPage,
+    name: "Application Details",
+    path: APPLICATION_DETAILS,
     exact: true,
   },
   {

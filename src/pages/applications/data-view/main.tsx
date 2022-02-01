@@ -6,7 +6,7 @@ import { DateViewComponentProp } from "./types";
 export default function MainComponent({
   onAccept,
   onReject,
-
+  onView,
   applications,
 }: DateViewComponentProp) {
   return (
@@ -21,7 +21,7 @@ export default function MainComponent({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    Name | Code
                   </th>
                   <th
                     scope="col"
@@ -33,7 +33,7 @@ export default function MainComponent({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    ID Type
+                    Status
                   </th>
                   <th
                     scope="col"
@@ -59,6 +59,7 @@ export default function MainComponent({
                       application={application}
                       onAccept={() => onAccept(application)}
                       onReject={() => onReject(application)}
+                      onView={() => onView(application)}
                     />
                   </React.Fragment>
                 ))}

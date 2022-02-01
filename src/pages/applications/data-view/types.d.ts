@@ -4,10 +4,12 @@ export interface CardComponentProp {
   application: Application;
   onAccept: () => void;
   onReject: () => void;
+  onView: () => void;
 }
 
 export interface DateViewComponentProp {
-  onAccept: (dataFromView: any) => void;
-  onReject: (dataFromView: any) => void;
+  onAccept: (dataFromView: Application) => void;
+  onReject: (dataFromView: Application) => void;
+  onView: (dataFromView: Application) => void;
   applications: Application[];
 }

@@ -18,7 +18,9 @@ function MainComponent({
 
   function onReject(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    mutateAsync({})
+    mutateAsync({
+      reason: "",
+    })
       .then(() => {
         refetch();
         toast.success("Application rejected successfully");

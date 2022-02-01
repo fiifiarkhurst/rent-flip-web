@@ -26,6 +26,8 @@ function MainComponent({
         setShow(false);
       })
       .catch((e: AxiosError) => {
+        console.log(e);
+
         toast.error(e.response?.data?.message || e?.message);
       });
   }

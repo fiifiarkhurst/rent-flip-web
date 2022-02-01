@@ -7,6 +7,7 @@ import { AxiosResponse } from "axios";
 import { get } from "../../services/transport";
 import { GET_APPLICATIONS } from "../../constants/constants";
 import { ErrorState, EmptyState } from "../../components/alert";
+import { useHistory } from "react-router-dom";
 const AcceptApplication = React.lazy(() => import("./accept"));
 const RejectApplication = React.lazy(() => import("./reject"));
 
@@ -15,6 +16,8 @@ function MainComponent() {
   const [isRejectShown, setIsRejectShown] = React.useState(false);
   const [selectedApplication, setSelectedApplication] =
     React.useState<Application>();
+
+  const { push } = useHistory();
 
   const { data, isLoading, refetch } = useQuery<
     any,
@@ -71,6 +74,9 @@ function MainComponent() {
                         onReject={(dataFromView: Application) => {
                           setSelectedApplication(dataFromView);
                           setIsRejectShown(true);
+                        }}
+                        onView={(dataFromView: Application) => {
+                          push(`/application/${dataFromView._id}`);
                         }}
                         onAccept={(dataFromView: Application) => {
                           setSelectedApplication(dataFromView);

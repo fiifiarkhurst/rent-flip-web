@@ -2,6 +2,7 @@ export const DASHBOARD = "/";
 export const PROPERTIES = "/properties";
 export const ADD_PROPERTY = "/properties/add";
 export const APPLICATIONS = "/applications";
+export const APPLICATION_DETAILS = "/application/:id";
 export const SETTINGS = "/settings";
 export const LOGIN = "/login";
 
