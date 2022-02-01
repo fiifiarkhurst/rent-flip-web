@@ -1,9 +1,22 @@
 import { PlusSmIcon } from "@heroicons/react/outline";
+import { AxiosResponse } from "axios";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import { EmptyState, ErrorState } from "../../components/alert";
+import { GET_PROPERITES } from "../../constants/constants";
 import { ADD_PROPERTY } from "../../navigation/constants";
+import { get } from "../../services/transport";
+import { SecondaryLoader } from "../../shared/loader";
+import { DataView } from "./data-view";
+import { GetPropertiesOutpuProp } from "./types";
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
 function MainComponent() {
+  const { data, isLoading, refetch } = useQuery<
+    any,
+    any,
+    AxiosResponse<GetPropertiesOutpuProp>
+  >("properties", () => get(GET_PROPERITES));
+
   return (
     <>
       <section>
@@ -21,137 +34,58 @@ function MainComponent() {
               Add Property
             </Link>
           </div>
-          <div className="relative mx-auto max-w-7xl">
-            <div className="grid max-w-lg gap-12 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none">
-              <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
-                <a href="/blog-post">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="object-cover w-full h-48 rounded-lg"
-                      src="https://images.unsplash.com/photo-1510166089176-b57564a542b1?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2024&amp;q=80"
-                      alt=""
-                    />
-                  </div>
-                </a>
-                <div className="flex flex-col justify-between flex-1">
-                  <a href="/blog-post"> </a>
-                  <div className="flex-1">
-                    <a href="/blog-post">
-                      <div className="flex pt-6 space-x-1 text-sm text-gray-500">
-                        <time> Mar 10, 2020 </time>
-                        <span aria-hidden="true"> · </span>
-                        <span> 4 min read </span>
-                      </div>
-                    </a>
-                    <a href="#" className="block mt-2 space-y-6">
-                      <h3
-                        className="
-                        text-2xl
-                        font-semibold
-                        leading-none
-                        tracking-tighter
-                        text-neutral-600
-                      "
-                      >
-                        {" "}
-                        Typography on app.{" "}
-                      </h3>
-
-                      <p className="text-sm font-normal text-gray-500">
-                        {" "}
-                        Filling text so you can see how it looks like with text.
-                        Did I said text?{" "}
-                      </p>
-                    </a>
-                  </div>
-                </div>
+          {/* body */}
+          {isLoading ? (
+            <>
+              <div
+                style={{
+                  marginTop: "10vh",
+                }}
+                className="flex justify-center items-center"
+              >
+                <SecondaryLoader
+                  size="w-12 h-12"
+                  color="border-green-600"
+                  border="border-2 "
+                />
               </div>
-              <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
-                <a href="/blog-post">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="object-cover w-full h-48 rounded-lg"
-                      src="https://images.unsplash.com/photo-1516245556508-7d60d4ff0f39?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
-                      alt=""
-                    />
-                  </div>
-                </a>
-                <div className="flex flex-col justify-between flex-1">
-                  <a href="/blog-post"> </a>
-                  <div className="flex-1">
-                    <a href="/blog-post">
-                      <div className="flex pt-6 space-x-1 text-sm text-gray-500">
-                        <time> Mar 10, 2020 </time>
-                        <span aria-hidden="true"> · </span>
-                        <span> 4 min read </span>
-                      </div>
-                    </a>
-                    <a href="#" className="block mt-2 space-y-6">
-                      <h3
-                        className="
-                        text-2xl
-                        font-semibold
-                        leading-none
-                        tracking-tighter
-                        text-neutral-600
-                      "
+            </>
+          ) : (
+            <>
+              {data?.data?.success ? (
+                <>
+                  {data?.data?.payload?.length === 0 ? (
+                    <>
+                      <div
+                        style={{
+                          marginTop: "10vh",
+                        }}
                       >
-                        {" "}
-                        Typography on app.{" "}
-                      </h3>
-                      <p className="text-sm font-normal text-gray-500">
-                        {" "}
-                        Filling text so you can see how it looks like with text.
-                        Did I said text?{" "}
-                      </p>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
-                <a href="/blog-post">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="object-cover w-full h-48 rounded-lg"
-                      src="https://images.unsplash.com/photo-1561654791-00316c79efa8?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=900&amp;q=60"
-                      alt=""
-                    />
-                  </div>
-                </a>
-                <div className="flex flex-col justify-between flex-1">
-                  <a href="/blog-post"> </a>
-                  <div className="flex-1">
-                    <a href="/blog-post">
-                      <div className="flex pt-6 space-x-1 text-sm text-gray-500">
-                        <time> Mar 10, 2020 </time>
-                        <span aria-hidden="true"> · </span>
-                        <span> 4 min read </span>
+                        <EmptyState
+                          model="properties"
+                          message="Get started by creating properties for your clients."
+                        />
                       </div>
-                    </a>
-                    <a href="#" className="block mt-2 space-y-6">
-                      <h3
-                        className="
-                        text-2xl
-                        font-semibold
-                        leading-none
-                        tracking-tighter
-                        text-neutral-600
-                      "
-                      >
-                        {" "}
-                        Typography on app.{" "}
-                      </h3>
-                      <p className="text-sm font-normal text-gray-500">
-                        {" "}
-                        Filling text so you can see how it looks like with text.
-                        Did I said text?{" "}
-                      </p>
-                    </a>
+                    </>
+                  ) : (
+                    <>
+                      <DataView properties={data?.data?.payload} />
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div
+                    style={{
+                      marginTop: "10vh",
+                    }}
+                  >
+                    <ErrorState model="properties" canReload reload={refetch} />
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                </>
+              )}
+            </>
+          )}
         </div>
       </section>
     </>

@@ -54,7 +54,7 @@ export default function MainComponent({
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {applications.map((application: Application) => (
-                  <React.Fragment key={application.name}>
+                  <React.Fragment key={application._id}>
                     <Card
                       application={application}
                       onAccept={() => onAccept(application)}

@@ -61,9 +61,10 @@ const LocationSearchInput = ({ setLong, setLat, setAddress, address }) => {
                   />
                 </div>
               )}
-              {suggestions.map((suggestion) => {
+              {suggestions.map((suggestion, suggestionIdx) => {
                 return (
                   <div
+                    key={suggestionIdx}
                     {...getSuggestionItemProps(suggestion, {
                       //   className,
                       // style,

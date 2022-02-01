@@ -9,11 +9,17 @@ module.exports = {
       gray: colors.slate,
       white: colors.white,
       red: colors.red,
+      purple: colors.purple,
     },
     fontFamily: {
       sans: ["Poppins", ...defaultTheme.fontFamily.sans],
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    // require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/typography"),
+  ],
 };
