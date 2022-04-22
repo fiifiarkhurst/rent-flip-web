@@ -15,6 +15,7 @@ export interface Application {
   startDate: Date;
   endDate: Date;
   createdAt: Date;
+  createdBy: any;
 }
 
 declare enum ApplicationStatus {

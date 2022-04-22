@@ -7,6 +7,9 @@ import Profile from "../../../assets/male.png";
 import moment from "moment";
 import numeral from "numeral";
 
+const getProperty = (details: any) =>
+  details?.property || details?.externalProperty;
+
 function DetailsCard({
   details,
   onAccept,
@@ -14,10 +17,16 @@ function DetailsCard({
 }: CardDetailsComponentProp) {
   const { push } = useHistory();
 
+  const property = getProperty(details);
+  console.log(property, details);
+
   return (
     <>
       <h1 className="text-xl font-bold tracking-tight text-gray-900">
-        Application Details
+        Application Details -{" "}
+        {details?.propertyType === "Internal"
+          ? "Internal Property"
+          : "External Property"}
       </h1>
 
       <div className="text-sm border-b border-gray-200 mt-2 pb-5 sm:flex sm:justify-between">
@@ -55,7 +64,11 @@ function DetailsCard({
             <div className="sm:col-span-4 md:col-span-5 md:row-end-2 md:row-span-2">
               <div className="aspect-w-1 aspect-h-1 bg-gray-50 rounded-lg overflow-hidden">
                 <img
-                  src={details?.property?.featuredBigImage}
+                  src={
+                    details?.propertyType === "Internal"
+                      ? property?.featuredBigImage
+                      : property?.images[0]
+                  }
                   alt={"alt"}
                   className="object-center object-cover"
                 />
@@ -91,7 +104,7 @@ function DetailsCard({
                       />
                       <div>
                         <span className="block text-gray-800">
-                          {details?.name}
+                          {details?.createdBy?.name}
                         </span>
                         {details.status === "Pending" ? (
                           <>
@@ -119,8 +132,8 @@ function DetailsCard({
                 <div>
                   <dt className="font-medium text-gray-900">User contact</dt>
                   <dd className="mt-3 text-gray-500 space-y-1">
-                    <p className="">{details.email}</p>
-                    <p>{details.phone}</p>
+                    <p className="">{details.createdBy.email}</p>
+                    <p>{details.createdBy.phone}</p>
                   </dd>
                 </div>
               </dl>
@@ -174,29 +187,29 @@ function DetailsCard({
         <dt className="text-sm font-medium text-gray-500">Attachments</dt>
         <dd className="mt-3 text-sm text-gray-900">
           <div className="border border-gray-200 rounded-md divide-y divide-gray-200">
-            {[
-              "national_id_card_new.pdf",
-              "pay_slip_confirmation_1.pdf",
-              "pay_slip_confirmation_2.pdf",
-            ].map((attachment) => (
-              <li
-                key={attachment}
-                className="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-              >
-                <div className="w-0 flex-1 flex items-center">
-                  <PaperClipIcon
-                    className="flex-shrink-0 h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                  <span className="ml-2 flex-1 w-0 truncate">{attachment}</span>
-                </div>
-                <div className="ml-4 flex-shrink-0 bg-gray-100 py-1 rounded-full px-3">
-                  <div className="font-medium text-xs text-gray-600 hover:text-gray-500">
-                    View
+            {[details?.createdBy?.idType, ...details?.createdBy?.paySlips].map(
+              (attachment) => (
+                <li
+                  key={attachment}
+                  className="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
+                >
+                  <div className="w-0 flex-1 flex items-center">
+                    <PaperClipIcon
+                      className="flex-shrink-0 h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 flex-1 w-0 truncate">
+                      {attachment}
+                    </span>
                   </div>
-                </div>
-              </li>
-            ))}
+                  <div className="ml-4 flex-shrink-0 bg-gray-100 py-1 rounded-full px-3">
+                    <div className="font-medium text-xs text-gray-600 hover:text-gray-500">
+                      View
+                    </div>
+                  </div>
+                </li>
+              )
+            )}
           </div>
         </dd>
       </section>

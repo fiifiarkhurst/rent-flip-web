@@ -3,6 +3,9 @@ import { CheckIcon, EyeIcon, XIcon } from "@heroicons/react/outline";
 import MalePng from "../../../assets/male.png";
 import moment from "moment";
 
+const truncate = (text: string, length: number = 0) => {
+  return text.length > length ? `${text.slice(0, length)}...` : text;
+};
 function Card({ application, onReject, onAccept, onView }: CardComponentProp) {
   return (
     <>
@@ -18,7 +21,7 @@ function Card({ application, onReject, onAccept, onView }: CardComponentProp) {
             </div>
             <div className="ml-4">
               <div className="text-sm font-medium text-gray-900">
-                {application?.name}
+                {truncate(application?.createdBy?.name, 15)}
               </div>
               <div className="text-sm text-gray-500">{application?.code}</div>
             </div>
@@ -26,9 +29,11 @@ function Card({ application, onReject, onAccept, onView }: CardComponentProp) {
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
           <div className="text-sm font-medium text-gray-900">
-            {application?.email}
+            {truncate(application?.createdBy?.email, 10)}
           </div>
-          <div className="text-sm text-gray-500">{application?.phone}</div>
+          <div className="text-sm text-gray-500">
+            {application?.createdBy?.phone}
+          </div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
           {application.status === "Pending" ? (

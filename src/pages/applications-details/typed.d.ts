@@ -15,6 +15,7 @@ export interface ApplicationDetails {
   status: Status;
   startDate: Date;
   createdAt: Date;
+  createdBy: any;
   endDate: Date;
 }
 
