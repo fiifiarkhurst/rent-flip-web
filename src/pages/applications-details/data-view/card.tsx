@@ -18,7 +18,6 @@ function DetailsCard({
   const { push } = useHistory();
 
   const property = getProperty(details);
-  console.log(property, details);
 
   return (
     <>

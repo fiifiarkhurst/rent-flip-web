@@ -1,12 +1,13 @@
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import { CardComponentProp } from "./types";
 import numeral from "numeral";
+import { Link } from "react-router-dom";
 
 function Card({ property }: CardComponentProp) {
   return (
     <>
       <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
-        <a href="/blog-post">
+        <Link to={`/properties/${property._id}`}>
           <div className="flex-shrink-0">
             <img
               className="object-cover w-full h-48 rounded-lg"
@@ -14,7 +15,7 @@ function Card({ property }: CardComponentProp) {
               alt={property.name}
             />
           </div>
-        </a>
+        </Link>
         <div className="flex flex-col justify-between flex-1">
           <div className="flex-1">
             <div className="flex flex-row pt-6 items-center justify-between">
