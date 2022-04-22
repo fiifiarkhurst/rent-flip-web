@@ -10,7 +10,6 @@ export const ToastProvider: FC = ({ children }) => {
         toastOptions={{
           className: "",
           style: {
-            margin: "40px",
             background: "#1A202C",
             color: "#fff",
             zIndex: 1,

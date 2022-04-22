@@ -9,3 +9,5 @@ export const GET_PROPERITES = "/property";
 
 export const LOGIN = "/admin/login";
 export const CURRENT_ADMIN = "/admin/current";
+export const UPDATE_DETAILS = "/admin";
+export const UPDATE_PASSWORD = "/admin/update-password";

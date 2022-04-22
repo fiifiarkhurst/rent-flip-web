@@ -21,8 +21,6 @@ function Login() {
   } = useForm<LoginInputProps>();
   const { mutateAsync, isLoading } = useLogin();
 
-  console.log(errors);
-
   React.useEffect(() => {
     document.title = "Login | " + siteTitle;
   }, []);
@@ -143,7 +141,6 @@ function Login() {
                           href="#"
                           className="font-medium text-blue-600 hover:text-blue-500"
                         >
-                          {" "}
                           Forgot your password?{" "}
                         </a>
                       </div>
