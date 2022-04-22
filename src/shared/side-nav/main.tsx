@@ -10,6 +10,7 @@ import { TopLoader } from "../loader";
 import { LOGIN } from "../../navigation/constants";
 import Logo from "../../assets/logotext.png";
 import Profile from "../../assets/male.jpeg";
+import { useCurrentUser } from "../../services/context/auth";
 
 const LogoutModal = lazy(() => import("../logout"));
 
@@ -17,6 +18,7 @@ export default function SideNav({
   setSidebarOpen,
   sidebarOpen,
 }: SideNavComponentProp) {
+  const [, userData] = useCurrentUser();
   const { pathname } = useLocation();
   const { push } = useHistory();
   const [isLogoutShown, setIsLogoutShown] = useState<boolean>(false);
@@ -24,6 +26,7 @@ export default function SideNav({
   function handleLogout() {
     push(LOGIN);
   }
+
   return (
     <>
       <div>
@@ -119,7 +122,7 @@ export default function SideNav({
                       </div>
                       <div className="ml-3">
                         <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                          Fiifi Arkhurst
+                          {userData?.data?.name}
                         </p>
                         <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
                           View profile
@@ -182,7 +185,7 @@ export default function SideNav({
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium -mb-2 text-gray-100 ">
-                      Fiifi Arkhurst
+                      {userData?.data?.name}
                     </p>
                     <button
                       type="button"

@@ -4,7 +4,7 @@ import { USER_TOKEN_IDENTIFIER } from "../constants/constants";
 export const BASE_URL = process.env.REACT_APP_BASEURL + "/api/v1";
 
 class Auth {
-  getCipher(): string | undefined {
+  getCipher() {
     return Cookies.get(USER_TOKEN_IDENTIFIER);
   }
 

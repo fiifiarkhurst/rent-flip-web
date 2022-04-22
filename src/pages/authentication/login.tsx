@@ -6,28 +6,48 @@ import { siteTitle } from "../../constants/appName";
 import { DASHBOARD } from "../../navigation/constants";
 import { SecondaryLoader } from "../../shared/loader";
 import Logo from "../../assets/logo.png";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { LoginInputProps, useLogin } from "./broker";
+import toast from "react-hot-toast";
+import { useCurrentUser } from "../../services/context/auth";
 
 function Login() {
+  const [{ signOut, signIn }] = useCurrentUser();
   const { push } = useHistory();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginInputProps>();
+  const { mutateAsync, isLoading } = useLogin();
+
+  console.log(errors);
 
   React.useEffect(() => {
     document.title = "Login | " + siteTitle;
   }, []);
 
-  // simulate loader
-  function simulateLoader(timeout: number) {
-    return new Promise((resolve) => setTimeout(resolve, timeout));
-  }
+  React.useEffect(() => {
+    //log out when they enter login page
+    signOut();
+  }, [signOut]);
 
-  function onLogin(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
-    simulateLoader(4000).then(() => {
-      setIsLoading(false);
-      push(DASHBOARD);
-    });
-  }
+  const handleLogin: SubmitHandler<LoginInputProps> = React.useCallback(
+    async (data) => {
+      try {
+        const res = await mutateAsync(data);
+        await signIn({
+          token: res?.data?.payload?.token,
+          data: res?.data?.payload?.admin,
+        });
+        push(DASHBOARD); // push to home
+        toast.success("Hurray, you logged in successfully!");
+      } catch (error) {
+        toast.error("Wrong Credentials. Please try again!");
+      }
+    },
+    [mutateAsync, signIn, push]
+  );
 
   return (
     <>
@@ -47,7 +67,10 @@ function Login() {
               </div>
               <div className="mt-8">
                 <div className="mt-6">
-                  <form className="space-y-6" onSubmit={onLogin}>
+                  <form
+                    className="space-y-6"
+                    onSubmit={handleSubmit(handleLogin)}
+                  >
                     <div>
                       <label className="block text-xs font-medium text-gray-600">
                         {" "}
@@ -56,28 +79,49 @@ function Login() {
                       <div className="mt-1">
                         <input
                           id="email"
-                          name="email"
                           type="email"
-                          required={true}
+                          {...register("email", {
+                            required: "You must enter your email",
+                            pattern: {
+                              value: /^\S+@\S+$/i,
+                              message: "Enter a valid email address",
+                            },
+                          })}
                           placeholder="Your Email"
                           className="block w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                         />
+                        {errors.email ? (
+                          <p
+                            className="mt-2 text-xs text-red-600"
+                            id="email-error"
+                          >
+                            Please enter a valid email
+                          </p>
+                        ) : null}
                       </div>
                     </div>
                     <div className="space-y-1">
                       <label className="block text-xs font-medium text-gray-600">
-                        {" "}
-                        Password{" "}
+                        Password
                       </label>
                       <div className="mt-1">
                         <input
                           id="password"
-                          name="password"
                           type="password"
-                          required={true}
+                          {...register("password", {
+                            required: "You must enter your password",
+                          })}
                           placeholder="Your Password"
                           className="block focus:ring-offset-gray-300  focus:ring-offset-2 focus:ring-white   focus:ring-2  w-full focus:border-transparent  focus:outline-none   text-gray-600  rounded-lg  border border-transparent transform ease-in-out  px-5  py-3 text-base placeholder-gray-300 transition    duration-500 "
                         />
+                        {errors.password ? (
+                          <p
+                            className="mt-2 text-xs text-red-600"
+                            id="email-error"
+                          >
+                            Password is required
+                          </p>
+                        ) : null}
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -107,6 +151,7 @@ function Login() {
                     <div>
                       <button
                         type="submit"
+                        disabled={isLoading}
                         className="flex ease-in-out focus:ring-green-500 focus:ring-offset-0 focus:ring-0 focus:outline-none hover:bg-green-500 rounded-xl bg-green-600 transform duration-500 items-center  justify-center transition text-center text-white   font-medium   text-base   py-4   w-full     px-10"
                       >
                         {isLoading ? (
@@ -119,7 +164,7 @@ function Login() {
                           </>
                         ) : (
                           <>Sign in </>
-                        )}{" "}
+                        )}
                       </button>
                     </div>
                   </form>

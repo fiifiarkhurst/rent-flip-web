@@ -6,3 +6,6 @@ export const ACCEPT_APPLICATION = (id: string) => `/request/${id}/accept`;
 export const REJECT_APPLICATION = (id: string) => `/request/${id}/reject`;
 
 export const GET_PROPERITES = "/property";
+
+export const LOGIN = "/admin/login";
+export const CURRENT_ADMIN = "/admin/current";
