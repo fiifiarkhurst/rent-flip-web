@@ -96,9 +96,6 @@ function DetailsCard({ details, refetch }: CardDetailsComponentProp) {
                   GH₵ {numeral(details.property?.price).format("0,0")}
                 </div>
               </div>
-              <p className="text-gray-500 mt-3">
-                {details?.property?.description}
-              </p>
             </div>
             <div className="sm:col-span-12 md:col-span-7">
               <dl className="grid grid-cols-1 gap-y-4 py-8 sm:grid-cols-2 sm:gap-x-6 sm:py-6 md:py-5">
@@ -149,35 +146,37 @@ function DetailsCard({ details, refetch }: CardDetailsComponentProp) {
                   </dd>
                 </div>
 
-                <div className="col-span-2">
-                  <dt className="font-medium text-gray-900 mt-7">
-                    Owner details
-                  </dt>
-                  <dd className="mt-3 text-gray-500">
-                    <div className="grid grid-cols-2">
-                      <div className="col-span-1">
-                        <div className="flex flex-row items-center space-x-2">
-                          <img
-                            src={details.photo || Profile}
-                            alt="profile"
-                            className="h-12 w-12 rounded-full"
-                          />
-                          <div>
-                            <span className="block text-gray-800">
-                              {property?.owner?.name}
-                            </span>
-                            <p>{property?.owner?.phone}</p>
+                {property?.owner ? (
+                  <div className="col-span-2">
+                    <dt className="font-medium text-gray-900 mt-7">
+                      Owner details
+                    </dt>
+                    <dd className="mt-3 text-gray-500">
+                      <div className="grid grid-cols-2">
+                        <div className="col-span-1">
+                          <div className="flex flex-row items-center space-x-2">
+                            <img
+                              src={details.photo || Profile}
+                              alt="profile"
+                              className="h-12 w-12 rounded-full"
+                            />
+                            <div>
+                              <span className="block text-gray-800">
+                                {property?.owner?.name}
+                              </span>
+                              <p>{property?.owner?.phone}</p>
+                            </div>
                           </div>
                         </div>
+                        <div className="col-span-1">
+                          <dd className="text-gray-500 space-y-1">
+                            <p className="">{property?.owner?.email}</p>
+                          </dd>
+                        </div>
                       </div>
-                      <div className="col-span-1">
-                        <dd className="text-gray-500 space-y-1">
-                          <p className="">{property?.owner?.email}</p>
-                        </dd>
-                      </div>
-                    </div>
-                  </dd>
-                </div>
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
               <div className="flex flex-row  mt-2 space-x-3 border-t pt-5">
                 {details?.status === "Pending" ? (
