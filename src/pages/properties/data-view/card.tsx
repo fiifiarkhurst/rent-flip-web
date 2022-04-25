@@ -7,7 +7,7 @@ function Card({ property }: CardComponentProp) {
   return (
     <>
       <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
-        <Link to={`/properties/${property._id}`}>
+        <Link to={`/properties/${property._id}/view`}>
           <div className="flex-shrink-0">
             <img
               className="object-cover w-full h-48 rounded-lg"

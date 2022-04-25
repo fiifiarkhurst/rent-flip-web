@@ -57,15 +57,7 @@ function MainComponent() {
           <>
             {data?.data?.success ? (
               <>
-                <DetailsCard
-                  details={data?.data?.payload}
-                  onAccept={() => {
-                    setSelected(data?.data?.payload);
-                  }}
-                  onReject={() => {
-                    setSelected(data?.data?.payload);
-                  }}
-                />
+                <DetailsCard details={data?.data?.payload} refetch={refetch} />
               </>
             ) : (
               <>

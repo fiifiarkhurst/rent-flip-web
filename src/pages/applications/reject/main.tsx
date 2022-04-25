@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BasicModal } from "../../../components/modal";
 import { RejectComponentProp } from "./types";
 import { useRejectApplication } from "../broker";
@@ -12,14 +13,19 @@ function MainComponent({
   application,
   refetch,
 }: RejectComponentProp) {
+  const [reason, setReason] = React.useState("");
   const { mutateAsync, isLoading } = useRejectApplication(
     application?._id as string
   );
 
   function onReject(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (!reason) {
+      return toast.error("Kindly give a reason for rejection!");
+    }
+
     mutateAsync({
-      reason: "",
+      reason,
     })
       .then(() => {
         refetch();
@@ -48,6 +54,18 @@ function MainComponent({
               </div>
             </div>
           </div>
+          <div>
+            <textarea
+              rows={3}
+              name="comment"
+              value={reason}
+              placeholder="Reason for rejection"
+              onChange={(e) => setReason(e.target.value)}
+              id="comment"
+              className="block mt-2 w-full px-5 py-3 text-base  placeholder-gray-300   transition  duration-500 ease-in-out transform   border border-transparent   rounded-lg  text-gray-600  focus:outline-none  focus:border-transparent   focus:ring-2  focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+              defaultValue={""}
+            />
+          </div>
           <div className="mt-5 sm:mt-6 space-y-2">
             <button
               type="button"
@@ -72,6 +90,7 @@ function MainComponent({
             </button>
             <button
               type="button"
+              onClick={() => setShow(false)}
               className="flex items-center h-10 justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-500  focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm"
             >
               Cancel
