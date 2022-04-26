@@ -21,7 +21,7 @@ const RejectApplicationComponent = React.lazy(
 function MainComponent() {
   const params: { id: string } = useParams();
 
-  const [selected, setSelected] = React.useState<Application>();
+  const [selected] = React.useState<Application>();
   const [showAccept, setShowAccept] = React.useState(false);
   const [showReject, setShowReject] = React.useState(false);
 
